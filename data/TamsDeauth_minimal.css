@@ -1,0 +1,41 @@
+/* TamsDeauth Minimal CSS */
+* { box-sizing: border-box; }
+body {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9em;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  color: #7db5ff;
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+}
+button {
+  display: inline-block;
+  background: #0e5cc2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+button:hover { background: #1a6ee0; }
+input[type=text], input[type=password], input[type=number], textarea {
+  background: #16213e;
+  border: 1px solid #333;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+}
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 8px; text-align: left; border-bottom: 1px solid #333; }
+th { color: #7db5ff; }

@@ -1,0 +1,8 @@
+body { background: #1a1a2e; color: #e0e0e0; font-family: Arial; padding: 20px; }
+h1 { color: #7db5ff; border-bottom: 1px solid #333; padding-bottom: 5px; }
+label { display: inline-block; width: 200px; }
+input[type=text], input[type=password], input[type=number] {
+  background: #16213e; border: 1px solid #333; color: white; padding: 5px; border-radius: 3px;
+}
+button { background: #0e5cc2; color: white; border: none; padding: 8px 16px; border-radius: 3px; cursor: pointer; }
+.form-group { margin: 10px 0; }
