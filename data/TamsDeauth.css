@@ -1,0 +1,285 @@
+/* --- New CSS Theme --- */
+    * { /* Added for more predictable layouts */
+        box-sizing: border-box;
+    }
+    @font-face {
+        font-family: 'CustomFont';
+        src: url('/font.woff2') format('woff2');
+    }
+    body {
+        overscroll-behavior-y: contain;
+        background: #1a1a1a;
+        color: #bfbfbf;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.9em;
+        margin: 0; 
+    }
+    .main-container {
+        width: 100%;
+        padding-top: 10px;
+        padding: 10px;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    label {
+        color: #bfbfbf;
+    }
+    button {
+        display: inline-block;
+        height: 38px;
+        padding: 0 12px;
+        color:#fff;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 38px;
+        letter-spacing: .05rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+        background: #2f3136;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+    }
+    button:hover {
+        background: #42444a;
+    }
+    p {
+        color: #bfbfbf;
+    }
+    h1 {
+        display: block;
+        width: calc(100% - 20px);
+        box-sizing: border-box;
+        font-size: 2rem;
+        margin-top: 0.5rem;
+        background: #2f3136;
+        color: #bfbfbb;
+        padding: 0.2em 1em;
+        border-radius: 3px;
+        font-weight: 100;
+        margin-left: 10px;
+        margin-right: 10px;
+        box-shadow: 0 0 40px #006eff, 0 0 20px #006eff;
+        inset-box-shadow: inset 0 0 20px #006eff, inset 0 0 20px #006eff;
+        text-shadow: 0 0 5px #00b4ff, 0 0 10px #00b4ff;
+        -webkit-text-stroke: 1px #7db5ff;
+    }
+    
+    #lockCanvas {
+        background-color: #000;
+        border: 2px solid #3a3a3a;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        image-rendering: pixelated;
+        width: 256px;
+        height: 128px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .info {
+        margin-top: 10px;
+        font-size: 1em;
+        text-align: center;
+    }
+    .info p {
+        color: #bfbfbf;
+        margin-bottom: 5px;
+    }
+    
+    .controls {
+        display: grid;
+        grid-template-areas:
+            ". up ."
+            "left . right"
+            ". down .";
+        width: 180px; 
+        margin: 20px auto; 
+        gap: 8px; 
+    }
+
+    #btn-up { grid-area: up; }
+    #btn-left { grid-area: left; }
+    #btn-right { grid-area: right; }
+    #btn-down { grid-area: down; }
+
+
+    #log {
+        border: 1px solid #3a3a3a;
+        background-color: #2c2c2c;
+        padding: 10px;
+        height: 150px;
+        overflow-y: scroll;
+        text-align: left;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .log-entry { margin: 0; padding: 2px 5px; border-bottom: 1px solid #444; font-size: 0.9em; }
+    .log-entry.error { color: #ff6b6b; }
+    .log-entry.success { color: #63e6be; }
+    .log-entry.info { color: #66d9ef; }
+
+</style>
+</head>
+<body>
+
+<div class="main-container">
+    <h1>VIRTUAL DISPLAY</h1>
+    <form style='display:inline-block; padding-left:8px;' method='post' action='/'><button style='display:inline-block;'>BACK</button></form>
+    <br><br>
+    <canvas id="lockCanvas" width="128" height="64"></canvas>
+
+    <div class="info">
+        <p>FPS: <span id="fps-counter">--</span> | Interval: <span id="interval-display">--</span>ms | Latency: <span id="latency-display">--</span>ms</p>
+    </div>
+
+    <div class="controls">
+        <button id="btn-up" onclick="sendButtonCommand('1')">&#9650;</button>
+        <button id="btn-left" onclick="sendButtonCommand('4')">&#9664;</button>
+        <button id="btn-right" onclick="sendButtonCommand('2')">&#9658;</button>
+        <button id="btn-down" onclick="sendButtonCommand('3')">&#9660;</button>
+    </div>
+    <br>
+    <p>* Activating sniffer-based features will make you disconnected</p>
+    <p>** Activating deauth/beacon spam will throttle the streaming performance</p>
+    <div hidden id="log"></div>
+</div>
+
+<script>
+    const logContainer = document.getElementById('log');
+    const canvas = document.getElementById('lockCanvas'); 
+    const ctx = canvas.getContext('2d');
+    const fpsCounter = document.getElementById('fps-counter');
+    const intervalDisplay = document.getElementById('interval-display');
+    const latencyDisplay = document.getElementById('latency-display');
+
+    let frameCount = 0;
+    let lastFpsUpdateTime = performance.now();
+    let allowFrameRequests = true;
+
+    const MIN_INTERVAL = 33;
+    const MAX_INTERVAL = 250;
+    let currentInterval = MIN_INTERVAL; 
+    
+    let latencies = [];
+    const LATENCY_SAMPLE_SIZE = 10;
+    let averageLatency = 0;
+
+    function logMessage(message, className = '') {
+        const p = document.createElement('p');
+        p.className = 'log-entry ' + className;
+        p.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        logContainer.appendChild(p);
+        logContainer.scrollTop = logContainer.scrollHeight;
+    }
+
+    function requestFrame() {
+        const startTime = performance.now();
+        const ws = new WebSocket('ws://192.168.1.1:8080');
+        ws.binaryType = "arraybuffer";
+
+        ws.onopen = () => {
+            canvas.style.borderColor = '#0e5cc2'; 
+            ws.send('0');
+        };
+
+        ws.onmessage = (event) => {
+            const latency = Math.min(performance.now() - startTime, 1000);
+            latencies.push(latency);
+            if (latencies.length > LATENCY_SAMPLE_SIZE) {
+                latencies.shift();
+            }
+
+            frameCount++;
+            const buffer = new Uint8Array(event.data);
+
+            if (buffer.length === 1024) {
+                drawBuffer(buffer);
+            } else {
+                logMessage(`Received buffer of incorrect size: ${buffer.length}`, 'error');
+            }
+            ws.close();
+        };
+        
+        ws.onclose = () => {};
+        ws.onerror = () => {
+            canvas.style.borderColor = '#ff6b6b';
+            logMessage('Connection Error!', 'error');
+        };
+    }
+
+    function sendButtonCommand(command) {
+        allowFrameRequests = false;
+        logMessage(`PAUSED frames to send command: ${command}`, 'info');
+
+        const ws = new WebSocket('ws://192.168.1.1:8080');
+        
+        ws.onopen = () => { ws.send(command); };
+        ws.onclose = () => {
+            logMessage(`RESUMING frames.`, 'info');
+            allowFrameRequests = true;
+        };
+        ws.onerror = () => {
+            logMessage(`Error sending command: ${command}`, 'error');
+            logMessage(`RESUMING frames after error.`, 'info');
+            allowFrameRequests = true;
+        };
+    }
+
+    function drawBuffer(buffer) {
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, 128, 64);
+        ctx.fillStyle = 'white';
+
+        for (let i = 0; i < buffer.length; i++) {
+            const x = i % 128;
+            const page = Math.floor(i / 128);
+            const byte = buffer[i];
+
+            for (let bit = 0; bit < 8; bit++) {
+                if ((byte >> bit) & 1) {
+                    const y = page * 8 + bit;
+                    ctx.fillRect(x, y, 1, 1);
+                }
+            }
+        }
+    }
+
+    function frameLoop() {
+        if (allowFrameRequests) {
+            requestFrame();
+        }
+        setTimeout(frameLoop, currentInterval);
+    }
+
+    setInterval(() => {
+        const now = performance.now();
+        const delta = (now - lastFpsUpdateTime) / 1000;
+        const fps = (frameCount / delta).toFixed(1);
+        
+        if (latencies.length > 0) {
+            const sum = latencies.reduce((a, b) => a + b, 0);
+            averageLatency = sum / latencies.length;
+        }
+
+        fpsCounter.textContent = fps;
+        intervalDisplay.textContent = currentInterval.toFixed(0);
+        latencyDisplay.textContent = averageLatency.toFixed(1);
+
+        const idealInterval = averageLatency + 10;
+        currentInterval = Math.max(MIN_INTERVAL, Math.min(idealInterval, MAX_INTERVAL));
+
+        frameCount = 0;
+        lastFpsUpdateTime = now;
+    }, 1000);
+
+    setTimeout(frameLoop, 1000);
+
+</script>
+</body>
+</html>
