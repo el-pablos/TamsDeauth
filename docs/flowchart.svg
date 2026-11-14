@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900" viewBox="0 0 800 900">
+<rect width="800" height="900" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="18" font-weight="bold">TamsDeauth — Attack Flowchart</text>
+<rect x="325" y="60" width="150" height="40" fill="#0e5cc2" rx="20"/>
+<text x="400" y="85" text-anchor="middle" fill="#fff" font-family="Arial" font-size="12">START</text>
+<line x1="400" y1="100" x2="400" y2="120" stroke="#7db5ff" stroke-width="2"/>
+<rect x="300" y="120" width="200" height="40" fill="#16213e" stroke="#7db5ff" rx="6"/>
+<text x="400" y="145" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="11">Scan Networks</text>
+<line x1="400" y1="160" x2="400" y2="180" stroke="#7db5ff" stroke-width="2"/>
+<rect x="300" y="180" width="200" height="40" fill="#16213e" stroke="#7db5ff" rx="6"/>
+<text x="400" y="205" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="11">Select Target AP</text>
+<line x1="400" y1="220" x2="400" y2="240" stroke="#7db5ff" stroke-width="2"/>
+<rect x="300" y="240" width="200" height="40" fill="#16213e" stroke="#7db5ff" rx="6"/>
+<text x="400" y="265" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="11">Choose Attack Mode</text>
+<!-- Branch lines -->
+<line x1="400" y1="280" x2="100" y2="320" stroke="#333" stroke-width="1.5"/>
+<line x1="400" y1="280" x2="220" y2="320" stroke="#333" stroke-width="1.5"/>
+<line x1="400" y1="280" x2="340" y2="320" stroke="#333" stroke-width="1.5"/>
+<line x1="400" y1="280" x2="460" y2="320" stroke="#333" stroke-width="1.5"/>
+<line x1="400" y1="280" x2="580" y2="320" stroke="#333" stroke-width="1.5"/>
+<line x1="400" y1="280" x2="700" y2="320" stroke="#333" stroke-width="1.5"/>
+<rect x="40" y="320" width="120" height="40" fill="#c20e0e" rx="6"/>
+<text x="100" y="345" text-anchor="middle" fill="#fff" font-family="Arial" font-size="10">Deauth</text>
+<rect x="160" y="320" width="120" height="40" fill="#0e5cc2" rx="6"/>
+<text x="220" y="345" text-anchor="middle" fill="#fff" font-family="Arial" font-size="10">Evil Twin</text>
+<rect x="280" y="320" width="120" height="40" fill="#0e5cc2" rx="6"/>
+<text x="340" y="345" text-anchor="middle" fill="#fff" font-family="Arial" font-size="10">Rogue AP</text>
+<rect x="400" y="320" width="120" height="40" fill="#7db5ff" rx="6"/>
+<text x="460" y="345" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="10" font-weight="bold">Beacon Spam</text>
+<rect x="520" y="320" width="120" height="40" fill="#00b4ff" rx="6"/>
+<text x="580" y="345" text-anchor="middle" fill="#fff" font-family="Arial" font-size="10">Router Guard</text>
+<rect x="640" y="320" width="120" height="40" fill="#16213e" stroke="#c20e0e" rx="6"/>
+<text x="700" y="345" text-anchor="middle" fill="#c20e0e" font-family="Arial" font-size="10">DDoS / Sniff</text>
+<!-- Converge -->
+<line x1="100" y1="360" x2="400" y2="400" stroke="#333" stroke-width="1.5"/>
+<line x1="220" y1="360" x2="400" y2="400" stroke="#333" stroke-width="1.5"/>
+<line x1="340" y1="360" x2="400" y2="400" stroke="#333" stroke-width="1.5"/>
+<line x1="460" y1="360" x2="400" y2="400" stroke="#333" stroke-width="1.5"/>
+<line x1="580" y1="360" x2="400" y2="400" stroke="#333" stroke-width="1.5"/>
+<line x1="700" y1="360" x2="400" y2="400" stroke="#333" stroke-width="1.5"/>
+<rect x="300" y="400" width="200" height="40" fill="#16213e" stroke="#00b4ff" rx="6"/>
+<text x="400" y="425" text-anchor="middle" fill="#00b4ff" font-family="Arial" font-size="11">Execute Attack</text>
+<line x1="400" y1="440" x2="400" y2="460" stroke="#7db5ff" stroke-width="2"/>
+<rect x="300" y="460" width="200" height="40" fill="#16213e" stroke="#7db5ff" rx="6"/>
+<text x="400" y="485" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="11">Monitor Status</text>
+<line x1="400" y1="500" x2="400" y2="520" stroke="#7db5ff" stroke-width="2"/>
+<rect x="300" y="520" width="200" height="40" fill="#16213e" stroke="#7db5ff" rx="6"/>
+<text x="400" y="545" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="11">Capture Results</text>
+<line x1="400" y1="560" x2="400" y2="580" stroke="#7db5ff" stroke-width="2"/>
+<rect x="325" y="580" width="150" height="40" fill="#c20e0e" rx="20"/>
+<text x="400" y="605" text-anchor="middle" fill="#fff" font-family="Arial" font-size="12">STOP</text>
+<!-- Side notes -->
+<text x="50" y="700" fill="#7db5ff" font-family="Arial" font-size="11">Attack Controls:</text>
+<text x="50" y="720" fill="#e0e0e0" font-family="Arial" font-size="10">• Web UI (/?deauth=start)</text>
+<text x="50" y="738" fill="#e0e0e0" font-family="Arial" font-size="10">• OLED Menu + Buttons</text>
+<text x="50" y="756" fill="#e0e0e0" font-family="Arial" font-size="10">• ESP-NOW Remote</text>
+<text x="50" y="790" fill="#7db5ff" font-family="Arial" font-size="11">Monitoring:</text>
+<text x="50" y="810" fill="#e0e0e0" font-family="Arial" font-size="10">• /monitor (web status)</text>
+<text x="50" y="828" fill="#e0e0e0" font-family="Arial" font-size="10">• OLED real-time display</text>
+<text x="50" y="846" fill="#e0e0e0" font-family="Arial" font-size="10">• /virtualdisplay (mirror)</text>
+</svg>

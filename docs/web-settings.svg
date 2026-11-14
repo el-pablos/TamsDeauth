@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+<rect width="600" height="600" fill="#1a1a2e" rx="12"/>
+<text x="300" y="30" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="16" font-weight="bold">Settings</text>
+<rect x="20" y="45" width="560" height="535" fill="#16213e" rx="8"/>
+<text x="40" y="75" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Display</text>
+<text x="40" y="95" fill="#e0e0e0" font-family="Arial" font-size="10">Display Sleep (ms):</text><rect x="250" y="82" width="100" height="18" fill="#0d1117" stroke="#333" rx="3"/><text x="255" y="96" fill="#888" font-family="Arial" font-size="9">10000</text>
+<text x="40" y="115" fill="#e0e0e0" font-family="Arial" font-size="10">Stream Interval (ms):</text><rect x="250" y="102" width="100" height="18" fill="#0d1117" stroke="#333" rx="3"/><text x="255" y="116" fill="#888" font-family="Arial" font-size="9">100</text>
+<text x="40" y="150" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Access Point</text>
+<text x="40" y="170" fill="#e0e0e0" font-family="Arial" font-size="10">AP SSID:</text><rect x="250" y="157" width="150" height="18" fill="#0d1117" stroke="#333" rx="3"/><text x="255" y="171" fill="#888" font-family="Arial" font-size="9">TamsDeauth</text>
+<text x="40" y="190" fill="#e0e0e0" font-family="Arial" font-size="10">AP Password:</text><rect x="250" y="177" width="150" height="18" fill="#0d1117" stroke="#333" rx="3"/><text x="255" y="191" fill="#888" font-family="Arial" font-size="9">deauther</text>
+<text x="40" y="210" fill="#e0e0e0" font-family="Arial" font-size="10">Rogue AP SSID:</text><rect x="250" y="197" width="150" height="18" fill="#0d1117" stroke="#333" rx="3"/><text x="255" y="211" fill="#555" font-family="Arial" font-size="9">FreeWifi</text>
+<text x="40" y="245" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Extender</text>
+<text x="40" y="265" fill="#e0e0e0" font-family="Arial" font-size="10">Extender SSID:</text><rect x="250" y="252" width="150" height="18" fill="#0d1117" stroke="#333" rx="3"/>
+<text x="40" y="285" fill="#e0e0e0" font-family="Arial" font-size="10">Extender Password:</text><rect x="250" y="272" width="150" height="18" fill="#0d1117" stroke="#333" rx="3"/>
+<text x="40" y="320" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Auto Deep-Sleep</text>
+<rect x="250" y="308" width="16" height="16" fill="#0d1117" stroke="#333" rx="2"/>
+<text x="40" y="350" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Auto Resume</text>
+<rect x="250" y="338" width="16" height="16" fill="#0e5cc2" rx="2"/><text x="272" y="350" fill="#00b4ff" font-family="Arial" font-size="9">checked</text>
+<text x="40" y="380" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">LED Blink</text>
+<rect x="250" y="368" width="16" height="16" fill="#0e5cc2" rx="2"/><text x="272" y="380" fill="#00b4ff" font-family="Arial" font-size="9">checked</text>
+<text x="40" y="410" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Pattern Lock Screen</text>
+<rect x="250" y="398" width="16" height="16" fill="#0d1117" stroke="#333" rx="2"/>
+<text x="40" y="445" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Scan</text>
+<text x="40" y="465" fill="#e0e0e0" font-family="Arial" font-size="10">Scan Duration (ms):</text><rect x="250" y="452" width="100" height="18" fill="#0d1117" stroke="#333" rx="3"/><text x="255" y="466" fill="#888" font-family="Arial" font-size="9">3000</text>
+<text x="40" y="485" fill="#e0e0e0" font-family="Arial" font-size="10">Deauth Delay (ms):</text><rect x="250" y="472" width="100" height="18" fill="#0d1117" stroke="#333" rx="3"/><text x="255" y="486" fill="#888" font-family="Arial" font-size="9">50</text>
+<text x="40" y="520" fill="#7db5ff" font-family="Arial" font-size="13" font-weight="bold">Language</text>
+<circle cx="50" cy="540" r="6" fill="#0e5cc2"/><text x="62" y="544" fill="#e0e0e0" font-family="Arial" font-size="10">English</text>
+<circle cx="150" cy="540" r="6" fill="#0d1117" stroke="#333"/><text x="162" y="544" fill="#e0e0e0" font-family="Arial" font-size="10">Bahasa Indonesia</text>
+<rect x="200" y="560" width="120" height="25" fill="#0e5cc2" rx="4"/><text x="260" y="577" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">SAVE SETTINGS</text>
+</svg>

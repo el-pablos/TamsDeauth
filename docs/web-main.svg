@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<rect width="800" height="500" fill="#1a1a2e" rx="12"/>
+<text x="400" y="30" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="16" font-weight="bold">TamsDeauth — Main Page</text>
+<rect x="30" y="50" width="740" height="430" fill="#16213e" rx="8"/>
+<!-- Header -->
+<text x="50" y="80" fill="#7db5ff" font-family="Arial" font-size="14" font-weight="bold">&#9776; Menu</text>
+<line x1="30" y1="90" x2="770" y2="90" stroke="#333"/>
+<!-- Menu buttons -->
+<rect x="50" y="100" width="80" height="25" fill="#0e5cc2" rx="4"/>
+<text x="90" y="117" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">SCAN</text>
+<rect x="140" y="100" width="90" height="25" fill="#0e5cc2" rx="4"/>
+<text x="185" y="117" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">DEEP SCAN</text>
+<rect x="240" y="100" width="100" height="25" fill="#0e5cc2" rx="4"/>
+<text x="290" y="117" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">REVEAL SSID</text>
+<!-- Target section -->
+<text x="50" y="155" fill="#7db5ff" font-family="Arial" font-size="12" font-weight="bold">Target</text>
+<text x="50" y="175" fill="#e0e0e0" font-family="Arial" font-size="11">Target : MyWiFi (AA:BB:CC:DD:EE:FF) on channel 6</text>
+<rect x="500" y="160" width="120" height="22" fill="#0e5cc2" rx="4"/>
+<text x="560" y="175" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">CLEAR SELECTION</text>
+<!-- Attack buttons -->
+<text x="50" y="215" fill="#7db5ff" font-family="Arial" font-size="12" font-weight="bold">Attacks</text>
+<rect x="50" y="225" width="110" height="25" fill="#0e5cc2" rx="4"/>
+<text x="105" y="242" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">START DEAUTH</text>
+<rect x="170" y="225" width="110" height="25" fill="#c20e0e" rx="4"/>
+<text x="225" y="242" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">STOP DEAUTH</text>
+<rect x="50" y="260" width="110" height="25" fill="#0e5cc2" rx="4"/>
+<text x="105" y="277" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">DEAUTH ALL</text>
+<rect x="170" y="260" width="110" height="25" fill="#0e5cc2" rx="4"/>
+<text x="225" y="277" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">BEACON SPAM</text>
+<rect x="50" y="295" width="110" height="25" fill="#0e5cc2" rx="4"/>
+<text x="105" y="312" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">EVIL TWIN</text>
+<rect x="170" y="295" width="110" height="25" fill="#0e5cc2" rx="4"/>
+<text x="225" y="312" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">ROGUE AP</text>
+<rect x="50" y="330" width="110" height="25" fill="#0e5cc2" rx="4"/>
+<text x="105" y="347" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">ROUTER GUARD</text>
+<rect x="170" y="330" width="110" height="25" fill="#0e5cc2" rx="4"/>
+<text x="225" y="347" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">DEAUTH MON</text>
+<!-- ESP-NOW -->
+<text x="350" y="215" fill="#7db5ff" font-family="Arial" font-size="12" font-weight="bold">ESP-NOW Remote</text>
+<rect x="350" y="225" width="70" height="20" fill="#16213e" stroke="#0e5cc2" rx="3"/>
+<text x="385" y="239" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="8">SYNC TARGET</text>
+<rect x="430" y="225" width="70" height="20" fill="#16213e" stroke="#0e5cc2" rx="3"/>
+<text x="465" y="239" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="8">DEAUTH ON</text>
+<rect x="350" y="250" width="70" height="20" fill="#16213e" stroke="#0e5cc2" rx="3"/>
+<text x="385" y="264" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="8">DEAUTH OFF</text>
+<rect x="430" y="250" width="70" height="20" fill="#16213e" stroke="#0e5cc2" rx="3"/>
+<text x="465" y="264" text-anchor="middle" fill="#e0e0e0" font-family="Arial" font-size="8">ROGUE START</text>
+<!-- Utilities -->
+<text x="350" y="300" fill="#7db5ff" font-family="Arial" font-size="12" font-weight="bold">Utilities</text>
+<rect x="350" y="310" width="70" height="20" fill="#16213e" stroke="#333" rx="3"/>
+<text x="385" y="324" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="8">HTML MENU</text>
+<rect x="430" y="310" width="70" height="20" fill="#16213e" stroke="#333" rx="3"/>
+<text x="465" y="324" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="8">SETTINGS</text>
+<rect x="350" y="335" width="70" height="20" fill="#16213e" stroke="#333" rx="3"/>
+<text x="385" y="349" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="8">FILE MANAGER</text>
+<rect x="430" y="335" width="70" height="20" fill="#16213e" stroke="#333" rx="3"/>
+<text x="465" y="349" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="8">VIRTUAL DISP</text>
+<rect x="350" y="360" width="70" height="20" fill="#16213e" stroke="#333" rx="3"/>
+<text x="385" y="374" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="8">VIEW LOG</text>
+<rect x="430" y="360" width="70" height="20" fill="#16213e" stroke="#333" rx="3"/>
+<text x="465" y="374" text-anchor="middle" fill="#c20e0e" font-family="Arial" font-size="8">RESTART</text>
+<!-- Footer -->
+<text x="400" y="460" text-anchor="middle" fill="#555" font-family="Arial" font-size="9">TamsDeauth | WiFi Deauther untuk ESP8266</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="500" viewBox="0 0 600 500">
+<rect width="600" height="500" fill="#1a1a2e" rx="12"/>
+<text x="300" y="30" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="16" font-weight="bold">Status Monitor</text>
+<rect x="30" y="50" width="540" height="420" fill="#16213e" rx="8"/>
+<text x="50" y="90" fill="#7db5ff" font-family="Arial" font-size="12" font-weight="bold">Current target</text><text x="350" y="90" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="90" fill="#00b4ff" font-family="Arial" font-size="12">MyWiFi</text>
+<text x="50" y="115" fill="#7db5ff" font-family="Arial" font-size="12">Current target BSSID</text><text x="350" y="115" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="115" fill="#00b4ff" font-family="Arial" font-size="12">AA:BB:CC:DD:EE:FF</text>
+<text x="50" y="140" fill="#7db5ff" font-family="Arial" font-size="12">Current target channel</text><text x="350" y="140" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="140" fill="#00b4ff" font-family="Arial" font-size="12">6</text>
+<text x="50" y="175" fill="#7db5ff" font-family="Arial" font-size="12">Deauth</text><text x="350" y="175" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="175" fill="#c20e0e" font-family="Arial" font-size="12" font-weight="bold">ACTIVE</text>
+<text x="50" y="200" fill="#7db5ff" font-family="Arial" font-size="12">Deauth All</text><text x="350" y="200" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="200" fill="#555" font-family="Arial" font-size="12">OFF</text>
+<text x="50" y="225" fill="#7db5ff" font-family="Arial" font-size="12">Evil-Twin</text><text x="350" y="225" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="225" fill="#555" font-family="Arial" font-size="12">OFF</text>
+<text x="50" y="250" fill="#7db5ff" font-family="Arial" font-size="12">Rogue AP</text><text x="350" y="250" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="250" fill="#555" font-family="Arial" font-size="12">OFF</text>
+<text x="50" y="285" fill="#7db5ff" font-family="Arial" font-size="12">AP(s) scanned</text><text x="350" y="285" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="285" fill="#00b4ff" font-family="Arial" font-size="12">12</text>
+<text x="50" y="310" fill="#7db5ff" font-family="Arial" font-size="12">Client(s) seen</text><text x="350" y="310" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="310" fill="#00b4ff" font-family="Arial" font-size="12">5</text>
+<text x="50" y="335" fill="#7db5ff" font-family="Arial" font-size="12">Client(s) connected</text><text x="350" y="335" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="335" fill="#00b4ff" font-family="Arial" font-size="12">2</text>
+<text x="50" y="360" fill="#7db5ff" font-family="Arial" font-size="12">Password(s) submitted</text><text x="350" y="360" fill="#888" font-family="Arial" font-size="12">:</text><text x="370" y="360" fill="#c20e0e" font-family="Arial" font-size="12" font-weight="bold">3</text>
+<rect x="50" y="400" width="100" height="25" fill="#0e5cc2" rx="4"/><text x="100" y="417" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">PAUSE ATTACK</text>
+<rect x="160" y="400" width="110" height="25" fill="#0e5cc2" rx="4"/><text x="215" y="417" text-anchor="middle" fill="#fff" font-family="Arial" font-size="9">RESUME ATTACK</text>
+<rect x="280" y="400" width="100" height="25" fill="#16213e" stroke="#333" rx="4"/><text x="330" y="417" text-anchor="middle" fill="#7db5ff" font-family="Arial" font-size="9">HTML MENU</text>
+</svg>
