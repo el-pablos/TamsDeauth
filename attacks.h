@@ -2,9 +2,8 @@
 #define ATTACKS_H
 
 /*
- * TamsDeauth Clone v3.8.1 — attacks.h
+ * TamsDeauth v1.0.0 — attacks.h
  * WiFi Attack Functions for ESP8266 Arduino
- * Reversed from TamsDeauth v3.8.1 firmware
  *
  * Attack modes: trueDeauth, preciseDeauth, beaconSpam, deauthAll,
  * etwin1-5, rogue1-5, DDoS Router, Router Guard, deauthmon, sniffer, probe

@@ -8,7 +8,7 @@ extern "C" {
 }
 
 // ============================================================
-// TamsDeauth Clone - ESP-NOW Remote Control
+// TamsDeauth - ESP-NOW Remote Control
 // Allows remote triggering of attacks via ESP-NOW protocol
 // Commands match original: ESPNOW_QC=xxx
 // ============================================================

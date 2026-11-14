@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 // ============================================================
-// TamsDeauth Clone - Localization / Multi-Language Support
+// TamsDeauth - Localization / Multi-Language Support
 // Supports: English (en), Indonesian/Bahasa (id)
 // Uses %KEY% placeholder system in HTML templates
 // ============================================================

@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 // ============================================================
-// TamsDeauth Clone v3.8.1 — Configuration & EEPROM Persistence
+// TamsDeauth v1.0.0 — Configuration & EEPROM Persistence
 //
 // All settings persist in EEPROM (4096 bytes).  The TamsDeauthConfig
 // struct is written raw; a magic sentinel validates first-boot vs.

@@ -1,9 +1,8 @@
 /*
  * ================================================================
- *  TamsDeauth v3.8.1 Clone — Main Arduino ESP8266 Sketch
- *  ^~3.8.1~^  Codename: TamsDeauth
+ *  TamsDeauth v1.0.0 — Main Arduino ESP8266 Sketch
  *
- *  A 1:1 functional reconstruction of the TamsDeauth WiFi
+ *  A WiFi pentesting firmware for the ESP8266, built
  *  pentesting firmware for ESP8266 (4 MB flash).
  *
  *  Hardware:
@@ -39,7 +38,6 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Wire.h>
-#include <Hash.h>          // SHA1 for self-destruct verification
 #include <WiFiUdp.h>
 
 // Low-level SDK access (wifi_send_pkt_freedom, wifi_set_channel, etc.)
@@ -94,24 +92,14 @@ ButtonState buttons[4] = {
 #define DEBOUNCE_MS    50    // debounce window
 #define LONGPRESS_MS   500   // long-press threshold
 
-// --- Trial mode ---
-// 10-minute trial timer; can be disabled with fullVersion flag.
-#define TRIAL_DURATION_MS  (10UL * 60UL * 1000UL)
-bool     fullVersion   = false;   // set true for full (paid) version
+// --- Uptime reference ---
 uint32_t bootTime      = 0;
-bool     trialExpired  = false;
 
 // --- Deep-sleep / power-save ---
 uint32_t lastActivityTime = 0;
 
 // --- SoftAP visibility ---
 bool softAPHidden = false;
-
-// --- Self-destruct ---
-bool deviceDisabled = false;
-
-// Firmware secret for integrity verification
-#define FIRMWARE_SECRET "NC_v381_TamsDeauth_"
 
 // --- LED blink state ---
 uint32_t lastBlinkTime = 0;
@@ -125,8 +113,6 @@ void handleMenuConfirm();
 void hideSoftAP();
 void showSoftAP();
 void doReboot();
-void checkTrial();
-bool verifySelfDestruct();
 void checkDeepSleep();
 void scanNetworks(bool deepScan = false);
 void updateLED();
@@ -140,8 +126,7 @@ void setup() {
   delay(200);
   Serial.println();
   Serial.println(F("================================"));
-  Serial.println(F("  TamsDeauth v3.8.1 Clone"));
-  Serial.println(F("  ^~3.8.1~^  TamsDeauth"));
+  Serial.println(F("  TamsDeauth v1.0.0"));
   Serial.println(F("   — ESP8266 WiFi Pentest"));
   Serial.println(F("================================"));
   Serial.println();
@@ -172,31 +157,6 @@ void setup() {
 
   // --- Load configuration from EEPROM ---
   loadConfig();
-
-  // --- Self-destruct / integrity verification ---
-  // Verifies SHA1 hash of critical firmware identifier + config magic.
-  // If tampered, disables the device permanently.
-  if (!verifySelfDestruct()) {
-    deviceDisabled = true;
-    Serial.println(F("[SECURITY] *** SELF-DESTRUCT TRIGGERED ***"));
-    Serial.println(F("[SECURITY] Unauthorized modification detected!"));
-    if (dispOK) {
-      display.clearDisplay();
-      display.setTextSize(1);
-      display.setTextColor(SSD1306_WHITE);
-      display.setCursor(0, 8);
-      display.println(F("This TamsDeauth"));
-      display.println(F("device is disabled"));
-      display.println(F("due to unauthorized"));
-      display.println(F("modification."));
-      display.display();
-    }
-    // Halt — device is permanently disabled
-    while (true) {
-      delay(1000);
-    }
-  }
-  Serial.println(F("[SECURITY] Integrity check passed"));
 
   // --- WiFi Access Point ---
   // Default SSID "TamsDeauth", password "deauther", IP 192.168.4.1
@@ -256,12 +216,9 @@ void setup() {
     }
   }
 
-  // --- Trial timer start ---
+  // --- Uptime reference & activity timer ---
   bootTime = millis();
   lastActivityTime = millis();
-  if (!fullVersion) {
-    Serial.println(F("[TRIAL] Trial mode active — 10 minute limit"));
-  }
 
   // --- Show MAIN MENU ---
   currentScreen = 0;   // main menu
@@ -300,10 +257,7 @@ void loop() {
   // 7. Update sniffer channel-hopping
   updateChannelHop();
 
-  // 8. Check trial timer (10-minute limit)
-  checkTrial();
-
-  // 9. Check auto deep-sleep / power-save
+  // 8. Check auto deep-sleep / power-save
   checkDeepSleep();
 
   // 10. Update LED indicator
@@ -710,112 +664,6 @@ void scanNetworks(bool deepScan) {
 }
 
 // ================================================================
-//  TRIAL MODE — 10-minute usage limit
-//
-//  After TRIAL_DURATION_MS (10 minutes), all attacks are
-//  stopped and a trial-expired message is shown on OLED.
-//  Can be disabled by setting fullVersion = true.
-// ================================================================
-void checkTrial() {
-  if (fullVersion || trialExpired) return;
-
-  uint32_t elapsed = millis() - bootTime;
-  if (elapsed > TRIAL_DURATION_MS) {
-    trialExpired = true;
-    Serial.println(F("[TRIAL] *** Trial expired — 10 minute limit reached ***"));
-
-    // Stop all active attacks
-    stopAllAttacks();
-    captivePortalActive = false;
-
-    // Show trial expired message on OLED
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(SSD1306_WHITE);
-    display.setCursor(0, 5);
-    display.println(F("Trial version."));
-    display.setCursor(0, 16);
-    display.println(F("Usage time limited"));
-    display.setCursor(0, 26);
-    display.println(F("to 10 minutes."));
-    display.setCursor(0, 40);
-    display.println(F("Trial expired!"));
-    display.setCursor(0, 54);
-    display.println(F("github.com/"));
-    display.setCursor(0, 58);
-    display.print(F("/TamsDeauth"));
-    display.display();
-
-    // Keep serving web interface so user sees the message
-    while (true) {
-      server.handleClient();
-      if (dnsServerActive) dnsServer.processNextRequest();
-      delay(100);
-    }
-  }
-}
-
-// ================================================================
-//  SELF-DESTRUCT VERIFICATION
-//
-//  On boot, computes SHA1 hash of a firmware secret string +
-//  config magic number.  The hash is stored in EEPROM on first
-//  boot and compared on subsequent boots.  If the hash does not
-//  match (firmware patched, EEPROM tampered, or magic changed),
-//  the device is permanently disabled.
-//
-//  Message: "This TamsDeauth device is disabled due to
-//            unauthorized modification."
-// ================================================================
-bool verifySelfDestruct() {
-  // Build hash input from firmware secret + config magic
-  String hashInput = String(FIRMWARE_SECRET);
-  hashInput += "_";
-  hashInput += String((uint32_t)cfg.magic);
-  String computedHash = SHA1(hashInput);
-
-  Serial.printf("[SECURITY] Computed hash: %s\n", computedHash.c_str());
-
-  // Read stored hash from EEPROM (stored at offset 4080, 40 bytes)
-  EEPROM.begin(EEPROM_SIZE);
-  char storedHash[41];
-  bool hasStored = false;
-  for (int i = 0; i < 40; i++) {
-    storedHash[i] = (char)EEPROM.read(4080 + i);
-    if (storedHash[i] != 0 && storedHash[i] != (char)0xFF) {
-      hasStored = true;
-    }
-  }
-  storedHash[40] = '\0';
-
-  if (!hasStored) {
-    // First boot — store the computed hash
-    Serial.println(F("[SECURITY] First boot — storing config hash"));
-    for (int i = 0; i < 40 && i < (int)computedHash.length(); i++) {
-      EEPROM.write(4080 + i, computedHash[i]);
-    }
-    EEPROM.commit();
-    EEPROM.end();
-    return true;   // OK on first boot
-  }
-
-  // Compare computed hash against stored hash
-  bool match = (computedHash.equals(String(storedHash)));
-  EEPROM.end();
-
-  if (!match) {
-    Serial.println(F("[SECURITY] *** HASH MISMATCH ***"));
-    Serial.printf("[SECURITY] Expected: %s\n", storedHash);
-    Serial.printf("[SECURITY] Got:      %s\n", computedHash.c_str());
-    Serial.println(F("[SECURITY] This TamsDeauth device is disabled due to"));
-    Serial.println(F("[SECURITY] unauthorized modification."));
-    return false;
-  }
-
-  Serial.println(F("[SECURITY] Config integrity verified — OK"));
-  return true;
-}
-
 // ================================================================
 //  AUTO DEEP-SLEEP / POWER-SAVE
 //
@@ -826,7 +674,6 @@ bool verifySelfDestruct() {
 // ================================================================
 void checkDeepSleep() {
   if (!cfg.Powersave_Active) return;
-  if (trialExpired) return;
 
   // 5 minutes of no activity → enter deep sleep
   if (millis() - lastActivityTime > 300000UL) {

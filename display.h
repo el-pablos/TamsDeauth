@@ -8,7 +8,7 @@
 #include "config.h"
 
 // ============================================================
-// TamsDeauth Clone v3.8.1 — SSD1306 OLED Display & Menu System
+// TamsDeauth v1.0.0 — SSD1306 OLED Display & Menu System
 //
 // 128×64 I2C display at address 0x3C.
 // Handles: boot logo, main menu, scan-result listing,
@@ -156,7 +156,7 @@ void drawBootLogo() {
 
   display.setTextSize(1);
   display.setCursor(35, 24);
-  display.println(F("^~3.8.1~^"));
+  display.println(F("v1.0.0"));
 
   display.setCursor(45, 36);
   display.println(F("TamsDeauth"));
@@ -370,6 +370,24 @@ void wakeDisplay() {
     display.ssd1306_command(SSD1306_DISPLAYON);
   }
   lastDisplayActivity = millis();
+}
+
+// ============================================================
+// OLED bridge helpers — used by attacks.h / sniffer.h
+// ============================================================
+void updateOLED(int line, const char* text) {
+  wakeDisplay();
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, line * 12);
+  display.print(text);
+  display.display();
+  lastDisplayActivity = millis();
+}
+
+void updateOLEDStatus(const char* status) {
+  Serial.printf("[OLED] %s\n", status);
 }
 
 // ============================================================

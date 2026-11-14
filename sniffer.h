@@ -8,7 +8,7 @@
 // beacon.h not available in all ESP8266 core versions; skip safely
 
 // ============================================================
-// TamsDeauth Clone - Packet Sniffer & Station Counter
+// TamsDeauth - Packet Sniffer & Station Counter
 // Uses ESP8266 promiscuous mode for 802.11 frame capture
 // ============================================================
 

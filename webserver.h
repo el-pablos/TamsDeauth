@@ -16,8 +16,8 @@
 #include "localization.h"
 
 // ============================================================
-// TamsDeauth Clone - Web Server & All HTTP Routes
-// Complete route table matching original firmware v3.8.1
+// TamsDeauth - Web Server & All HTTP Routes
+// Complete route table for all HTTP endpoints
 // ============================================================
 
 ESP8266WebServer server(80);
@@ -372,7 +372,7 @@ void handleRoot() {
     html += "<button>RESTART</button></form>";
     
     html += "<br><br>";
-    html += "<p style='font-size:0.9em;color:#888;'>TamsDeauth Clone | Inspired by WiFi deauther projects | ";
+    html += "<p style='font-size:0.9em;color:#888;'>TamsDeauth — WiFi Deauther for ESP8266 | ";
     html += "Developed from 's EvilTwin source</p>";
     html += "</body></html>";
     

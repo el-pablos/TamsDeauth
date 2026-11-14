@@ -6,7 +6,7 @@
 #include <ESP8266WebServer.h>
 
 // ============================================================
-// TamsDeauth Clone - LittleFS File System Browser
+// TamsDeauth - LittleFS File System Browser
 // Provides /fsbrowser route for file upload/download/delete
 // and /filecontent for reading/writing file contents
 // ============================================================
