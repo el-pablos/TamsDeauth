@@ -1,0 +1,45 @@
+# Build artifacts
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+
+# Arduino/PlatformIO build
+.build/
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets - NEVER commit these
+*.key
+*.pem
+*.env
+.env
+secrets.h
+credentials.h
+
+# Logs
+*.log
+serial.log
+
+# Node (if any tooling)
+node_modules/
+
+# Backup files
+*.bak
+*.orig
+*~
+
+# Firmware binaries (don't commit compiled firmware)
+firmware/*.bin
+build/*.bin
